@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo 'TEST BEGIN:'
+echo 'Cluster node started at localhost'
