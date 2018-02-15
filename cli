@@ -2,9 +2,14 @@
 
 VERSION='0.1.3'
 
+# @brief Get version
+function get_version() {
+    return ${VERSION}
+}
+
 # @brief Print version
 function print_version() {
-    echo ${VERSION}
+    echo get_version
 }
 
 # @brief Print help
@@ -21,6 +26,13 @@ function print_help() {
     echo -e "   -h, --help            print help"
     echo
 }
+
+# @brief main
+function main() {
+    print_help()
+    echo get_version()
+}
+
 
 while [[ $# -ge 1 ]]; do
     key="$1"
