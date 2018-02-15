@@ -1,4 +1,25 @@
 #!/bin/bash
 
-echo 'TEST BEGIN:'
-echo 'Cluster node started at localhost'
+VERSION='0.1.3'
+CMD=''
+
+
+${CMD}='--start'
+
+
+if ${CMD}=='--start'
+  echo 'Cloud node started at localhost'
+fi
+
+if ${CMD}=='--version'
+  echo ${VERSION}
+fi
+
+if ${CMD}==''
+  echo 'Cloud node command line interface'
+  echo 'version: ${VERSION}'
+  echo 'usagre:'
+  echo '  --start'
+  echo '  --stop'
+  echo '  --version'
+fi
