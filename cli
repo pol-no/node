@@ -1,25 +1,62 @@
 #!/bin/bash
 
 VERSION='0.1.3'
-CMD=''
 
+# @brief Print version
+function print_version() {
+    echo ${VERSION}
+}
 
-${CMD}='--start'
+# @brief Print help
+function print_help() {
+    echo -e "\e[1mCloud node command line interface\e[0m" >&2
+    echo -e "\e[1mversion: ${VERSION}\e[0m" >&2
+    echo -e "\e[1mUsage: ./cli [<option> ...]\e[0m" >&2
+    echo
+    echo -e "\e[4mOptions:\e[0m"
+    echo -e "   -r, --run             run node"
+    echo -e "   -s, --stop            stop node"
+    echo -e "   -i, --info            node information"
+    echo -e "   -v, --version         print version"
+    echo -e "   -h, --help            print help"
+    echo
+}
 
+while [[ $# -ge 1 ]]; do
+    key="$1"
+    case ${key} in
+        -n|--node)
+        if [[ ! -f "$2" ]]; then
+            help_message
+            exit 1
+        fi
+        LOCAL_PACKAGE="$2"
+        shift # past argument
+        ;;
+        -u|--uninstall)
+        if [[ ! -f "$2" ]]; then
+            help_message
+            exit 1
+        fi
+        UNINSTALL="$2"
+        shift # past argument
+        ;;
+        -h|--help)
+        print_help
+        exit 0
+        ;;
+        -v|--version)
+        print_version
+        exit 0
+        ;;
+        *) # unknown option
+        error_msg "Unknown argument: $1"
+        help_message
+        exit 1
+        ;;
+    esac
+    shift # past argument or value
+done
 
-if ${CMD}=='--start'
-  echo 'Cloud node started at localhost'
-fi
-
-if ${CMD}=='--version'
-  echo ${VERSION}
-fi
-
-if ${CMD}==''
-  echo 'Cloud node command line interface'
-  echo 'version: ${VERSION}'
-  echo 'usagre:'
-  echo '  --start'
-  echo '  --stop'
-  echo '  --version'
-fi
+main
+exit $?
