@@ -9,7 +9,8 @@ function get_version() {
 
 # @brief Print version
 function print_version() {
-    echo get_version
+    #get_version
+    echo ${VERSION}
 }
 
 # @brief Print help
@@ -29,8 +30,7 @@ function print_help() {
 
 # @brief main
 function main() {
-    print_help()
-    echo get_version()
+    print_help
 }
 
 
