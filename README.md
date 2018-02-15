@@ -1,2 +1,2 @@
-# node
-Cloud node
+# Cloud node
+Cloud node example
